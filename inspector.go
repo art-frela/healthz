@@ -150,13 +150,13 @@ func (i *Inspector) HealthHandler(group ProbeGroup, needAllHealthy bool, toRespo
 
 	return func(w http.ResponseWriter, _ *http.Request) {
 		if err := i.CheckGroup(group, needAllHealthy); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(http.StatusServiceUnavailable)
 			w.Write(toResponse(err))
 
 			return
 		}
 
-		w.WriteHeader(http.StatusServiceUnavailable)
+		w.WriteHeader(http.StatusOK)
 		w.Write(toResponse(nil))
 	}
 }
