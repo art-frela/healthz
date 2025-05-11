@@ -194,7 +194,7 @@ func TestInspectorCheck(t *testing.T) {
 }
 
 func TestHealthHandler(t *testing.T) {
-	svc := &mockService{healthErr: errors.New("unhealthy")}
+	svc := &mockService{}
 	inspector := New(HealthCheckTarget{
 		Service: svc,
 		Groups:  GroupReady,
